@@ -7,9 +7,19 @@ const path = require("path");
 // http://localhost:8080/products?_page=2&_limit=5
 
 const productsPath = path.resolve("db", "products.json");
+const deletedPath = path.resolve("db", "deleted.json");
 
 const getProducts = () => fs.readFile(productsPath, "utf8").then(JSON.parse);
+const getDeleted = () => fs.readFile(deletedPath, "utf8").then(JSON.parse);
+const saveFile = (file, data) =>
+  fs.writeFile(file, JSON.stringify(data, null, 1));
 
+const saveToDeleted = (del_item) => {
+  return getDeleted().then((all_del) => {
+    all_del.push(del_item);
+    return saveFile(deletedPath, all_del);
+  });
+};
 // console.log(getProducts());
 
 // getProducts().then((data) => console.log(data[0]));
@@ -84,6 +94,19 @@ app.get("/products", (req, res) => {
     } else {
       res.json({ start, end, length, output });
     }
+  });
+});
+
+app.delete("/product/:id", (req, res) => {
+  const { id } = req.params;
+  getProducts().then((all) => {
+    const del_idx = all.findIndex((item) => item.id === +id);
+    if (del_idx === -1) return res.status(404).json({ msg: "id not found" });
+    const [del_item] = all.splice(del_idx, 1);
+    saveFile(productsPath, all);
+    // saveFile(deletedPath, del_item);
+    saveToDeleted(del_item);
+    res.json({ msg: `deleted id=${id}` });
   });
 });
 

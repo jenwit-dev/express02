@@ -1,0 +1,62 @@
+[
+ {
+  "id": 5,
+  "title": "Ergonomic Steel Soap",
+  "price": 273,
+  "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+  "images": [
+   "https://picsum.photos/640/640?r=9403",
+   "https://picsum.photos/640/640?r=9749",
+   "https://picsum.photos/640/640?r=3961"
+  ],
+  "creationAt": "2023-05-03T00:09:03.000Z",
+  "updatedAt": "2023-05-03T00:09:03.000Z",
+  "category": {
+   "id": 4,
+   "name": "Shoes",
+   "image": "https://picsum.photos/640/640?r=109",
+   "creationAt": "2023-05-03T00:09:03.000Z",
+   "updatedAt": "2023-05-03T00:09:03.000Z"
+  }
+ },
+ {
+  "id": 3,
+  "title": "Electronic Cotton Cheese",
+  "price": 692,
+  "description": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+  "images": [
+   "https://picsum.photos/640/640?r=2771",
+   "https://picsum.photos/640/640?r=5047",
+   "https://picsum.photos/640/640?r=3556"
+  ],
+  "creationAt": "2023-05-03T00:09:03.000Z",
+  "updatedAt": "2023-05-03T00:09:03.000Z",
+  "category": {
+   "id": 1,
+   "name": "Clothes",
+   "image": "https://picsum.photos/640ฆ/640?r=1983",
+   "creationAt": "2023-05-03T00:09:03.000Z",
+   "updatedAt": "2023-05-03T00:09:03.000Z"
+  }
+ },
+ {
+  "id": 7,
+  "title": "Gorgeous Cotton Table",
+  "price": 584,
+  "description": "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+  "images": [
+   "https://picsum.photos/640/640?r=577",
+   "https://picsum.photos/640/640?r=6784",
+   "https://picsum.photos/640/640?r=4484"
+  ],
+  "creationAt": "2023-05-03T00:09:03.000Z",
+  "updatedAt": "2023-05-03T00:09:03.000Z",
+  "category": {
+   "id": 5,
+   "name": "Others",
+   "image": "https://picsum.photos/640/640?r=9632",
+   "creationAt": "2023-05-03T00:09:03.000Z",
+   "updatedAt": "2023-05-03T00:09:03.000Z"
+  }
+ }
+]
