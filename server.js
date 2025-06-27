@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const fs = require("fs/promises");
+const fss = require("fs");
 const path = require("path");
 
 // http://localhost:8080/products?_page=2&_limit=5
@@ -13,6 +14,8 @@ const getProducts = () => fs.readFile(productsPath, "utf8").then(JSON.parse);
 const getDeleted = () => fs.readFile(deletedPath, "utf8").then(JSON.parse);
 const saveFile = (file, data) =>
   fs.writeFile(file, JSON.stringify(data, null, 1));
+
+if (!fss.existsSync(deletedPath)) saveFile(deletedPath, []);
 
 const saveToDeleted = (del_item) => {
   return getDeleted().then((all_del) => {
@@ -81,13 +84,26 @@ app.get("/", (req, res) => {
 // });
 
 app.get("/products", (req, res) => {
-  const { _page = 1, _limit = 10 } = req.query;
+  const {
+    _page = 1,
+    _limit = 10,
+    _minPrice = 0,
+    _maxPrice = 999_999,
+  } = req.query;
   getProducts().then((all) => {
-    console.log(all.length);
+    // console.log(all.length);
+
+    const productFilter =
+      +_minPrice == 0 && +_maxPrice == 999_999
+        ? all
+        : all.filter(
+            (item) => item.price > +_minPrice && item.price < +_maxPrice
+          );
+
     let start = (+_page - 1) * +_limit;
     let end = start + +_limit;
     // because endIndex is excluded in arr.slice(startIndex, endIndex)
-    const output = all.slice(start, end);
+    const output = productFilter.slice(start, end);
     const length = output.length;
     if (output.length == 0) {
       res.status(404).json({ msg: "no data" });
